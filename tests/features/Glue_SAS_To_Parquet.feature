@@ -1,8 +1,5 @@
 Feature: Test Glue Job SAS to Parquet
 
-    Scenario: Create Glue Context
-    Given I create glue context
-
   Scenario Outline: Validate tables from connnection
     Given I get list folders from client with these details "<client>" "<bucket_name>" "<prefix>"
     Then I validate list folder has these "table_1" is exist in the data
@@ -24,7 +21,7 @@ Feature: Test Glue Job SAS to Parquet
     Then I validate data has "changedate_month" column
     Then I validate data has "changedate_day" column
 
-  Scenario: Validate
+  Scenario: Validate after writing data to target path
     Given I read "filepath"
     Then I add audit cols
     Then I write to parquet write mode as "overwrite" partition_cols as "processeddate" target_path as "target_path"
